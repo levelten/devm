@@ -1,0 +1,34 @@
+<?php
+/**
+ * @file
+ * Code for the Devmaster feature.
+ */
+
+include_once('devmaster.features.inc');
+
+/**
+ * Implements hook_menu()
+ */
+function devmaster_menu() {
+  $items = array();
+  
+  $items['node/%node/services'] = array(
+    'title' => 'Services', 
+    'page callback' => 'devmaster_services', 
+    'page arguments' => array(1), 
+    'access callback' => 'devmaster_tab_access',
+    'access arguments' => array(1, 2),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'devmaster.pages.inc',
+  );  
+  
+  return $items;
+}
+
+/**
+ * access callback for tabs
+ */
+function devmaster_tab_access($node, $tab) {
+  // NEED TO CHECK CONTENT TYPE AND PERMISSIONS !!!
+  return TRUE;
+}
